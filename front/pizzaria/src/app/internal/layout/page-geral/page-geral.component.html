@@ -1,0 +1,17 @@
+<mat-toolbar color="primary" class="toolbar">
+  <img src="../../../../../assets/logo.png" height="50">
+
+  <span>Pizarria</span>
+
+  <span class="example-spacer"></span>
+  <button (click)="redirecToCart()" mat-icon-button aria-label="Example icon-button with heart icon">
+   <mat-icon>shopping_cart</mat-icon>
+  </button>
+  <button (click)="redirecToUser()" mat-icon-button aria-label="Example icon-button with share icon">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="all">
+  <router-outlet></router-outlet>
+</div>

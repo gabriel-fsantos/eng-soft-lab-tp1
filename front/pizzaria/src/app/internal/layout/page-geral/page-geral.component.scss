@@ -1,0 +1,13 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar {
+  position: sticky;
+  background-color: #bd2828;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 600;
+}
