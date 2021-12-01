@@ -1,1 +1,16 @@
-<p>home-page works!</p>
+<div class="all">
+
+  <mat-card class="card" *ngFor="let item of products; index as i">
+    <mat-card-header>
+      <mat-card-title>{{ item.description }}</mat-card-title>
+      <mat-card-subtitle>Preço: {{ item.price }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="../../../../assets/logo.png">
+    <!-- <mat-card-content>
+    </mat-card-content> -->
+    <mat-card-actions>
+      <button mat-raised-button (click)="addCart(item, i)">ADICIONAR AO CARRINHO</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>

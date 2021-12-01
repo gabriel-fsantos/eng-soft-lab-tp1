@@ -1,11 +1,11 @@
 import { success, notFound } from '../../services/response/'
-import { User } from '.'
+import { district } from '.'
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>
-  User.count(query)
-    .then(count => User.find(query, select, cursor)
-      .then(users => ({
-        rows: users.map((user) => user.view()),
+  district.count(query)
+    .then(count => district.find(query, select, cursor)
+      .then(districts => ({
+        rows: districts.map((district) => district),
         count
       }))
     )
@@ -23,8 +23,8 @@ export const showMe = ({ user }, res) =>
   res.json(user.view(true))
 
 export const create = ({ bodymen: { body } }, res, next) =>
-  User.create(body)
-    .then((user) => user.view(true))
+  district.create(body)
+    .then((district) => district)
     .then(success(res, 201))
     .catch((err) => {
       /* istanbul ignore else */
@@ -60,29 +60,8 @@ export const update = ({ bodymen: { body }, params, user }, res, next) =>
     .then(success(res))
     .catch(next)
 
-export const updatePassword = ({ bodymen: { body }, params, user }, res, next) =>
-  User.findById(params.id === 'me' ? user.id : params.id)
-    .then(notFound(res))
-    .then((result) => {
-      if (!result) return null
-      const isSelfUpdate = user.id === result.id
-      if (!isSelfUpdate) {
-        res.status(401).json({
-          valid: false,
-          param: 'password',
-          message: 'You can\'t change other user\'s password'
-        })
-        return null
-      }
-      return result
-    })
-    .then((user) => user ? user.set({ password: body.password }).save() : null)
-    .then((user) => user ? user.view(true) : null)
-    .then(success(res))
-    .catch(next)
-
 export const destroy = ({ params }, res, next) =>
-  User.findById(params.id)
+  district.findById(params.id)
     .then(notFound(res))
     .then((user) => user ? user.remove() : null)
     .then(success(res, 204))

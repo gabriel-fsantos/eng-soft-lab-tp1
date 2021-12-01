@@ -30,9 +30,23 @@ const userSchema = new Schema({
     enum: roles,
     default: 'user'
   },
-  picture: {
+  phoneNumber: {
     type: String,
-    trim: true
+  },
+  cpf: {
+    type: String,
+  },
+  cep: {
+    type: String,
+  },
+  street: {
+    type: String,
+  },
+  street: {
+    type: String,
+  },
+  district: {
+    type: String
   }
 }, {
   timestamps: true

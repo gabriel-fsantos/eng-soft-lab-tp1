@@ -1,0 +1,35 @@
+.all {
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: space-around;
+  align-items: center;
+  background-color: bisque;
+}
+
+.container {
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #bd8128;
+}
+
+.card {
+  padding: 16px;
+  color: #fff;
+  border-radius: 8px;
+  background:  #bd2828;
+  margin-top: 12px;
+  width: 300px;
+}
+
+.total {
+  color: #fff;
+}
+
+.header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

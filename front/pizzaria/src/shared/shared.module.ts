@@ -23,6 +23,9 @@ import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatTableModule } from "@angular/material/table";
 import { MatTooltipModule } from "@angular/material/tooltip";
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatCardModule } from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSelectModule,
     MatTabsModule,
     MatTableModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatStepperModule,
+    MatCardModule
   ],
   exports: [
     CommonModule,
@@ -77,11 +82,13 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSnackBarModule,
     MatTableModule,
     MatTooltipModule,
-    DragDropModule
+    DragDropModule,
+    MatStepperModule,
+    MatCardModule
   ],
   providers: [
     DatePipe,
-    DecimalPipe
+    DecimalPipe,
   ],
   entryComponents: [
   ]

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -10,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class HttpService {
 
-  private readonly apiUrl: string = 'http://localhost:3000';
+  private readonly apiUrl: string = 'http://0.0.0.0:9000';
 
   constructor(private readonly http: HttpClient) { }
 

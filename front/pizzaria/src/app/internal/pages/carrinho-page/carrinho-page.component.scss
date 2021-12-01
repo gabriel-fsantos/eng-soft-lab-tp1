@@ -1,0 +1,28 @@
+.all {
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: space-around;
+  align-items: center;
+  background-color: bisque;
+}
+
+.card {
+  padding: 16px;
+  color: #fff;
+  border-radius: 8px;
+  background:  #bd2828;
+  margin-top: 36px;
+  width: 300px;
+}
+
+button {
+  color: #fff;
+  background-color: #bd2828;
+}
+
+.total {
+  margin-top: 16px;
+}

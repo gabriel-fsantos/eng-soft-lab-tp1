@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { InternalService } from '../../internal.service';
 
 @Component({
   selector: 'app-page-geral',
@@ -8,9 +9,16 @@ import { Router } from '@angular/router';
 })
 export class PageGeralComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  cart: any = [];
+
+  constructor(private router: Router,
+     private readonly internalService: InternalService) { }
 
   ngOnInit(): void {
+    this.internalService.cartEvent.subscribe((res: any) => {
+      console.log(res)
+      this.cart = res;
+    })
   }
 
   redirecToCart() {
@@ -19,6 +27,10 @@ export class PageGeralComponent implements OnInit {
 
   redirecToUser() {
     this.router.navigate(['internal/usuario']);
+  }
+
+  redirecToHome() {
+    this.router.navigate(['internal/home']);
   }
 
 }

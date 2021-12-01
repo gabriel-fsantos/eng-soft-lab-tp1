@@ -1,1 +1,22 @@
-<p>user-page works!</p>
+<div class="all">
+
+  <div *ngIf="orders.length > 0">
+    <h1>Pedidos</h1>
+    <div class="container" *ngFor="let outItem of orders;">
+      <div class="card" *ngFor="let item of outItem.orders; index as i">
+        <mat-card-title>{{ item.description }}</mat-card-title>
+        <div>Preço: {{ item.price }}</div>
+        <div style="margin-top: 10px;">Quantidade: {{ item.quant }}</div>
+      </div>
+      <div class="total">
+        <p>Total: R$ {{ getSum(outItem.orders) }}</p>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div *ngIf="orders.length == 0">
+    <h1>Nenhum pedido encontrado</h1>
+  </div>
+</div>

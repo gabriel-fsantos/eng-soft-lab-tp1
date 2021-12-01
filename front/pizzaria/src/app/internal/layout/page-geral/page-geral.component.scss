@@ -11,3 +11,18 @@
   color: white;
   font-weight: 600;
 }
+
+.circle {
+  font-size: 12px;
+  border-radius: 50%;
+  color: #000;
+  background-color: greenyellow;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  right: 60px;
+  top: 57px;
+}

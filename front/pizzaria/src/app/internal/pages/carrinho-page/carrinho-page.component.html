@@ -1,1 +1,22 @@
-<p>carrinho-page works!</p>
+<div class="all">
+
+  <div *ngIf="cart.length > 0">
+    <div class="card" *ngFor="let item of cart; index as i">
+        <mat-card-title>{{ item.description }}</mat-card-title>
+        <mat-card-subtitle>Preço: {{ item.price }}</mat-card-subtitle>
+        <button mat-stroked-button style="background-color: bisque; color: black;" (click)="remove(i)">Remover</button>
+        <div style="margin-top: 10px;">Quantidade: {{ item.quant }}</div>
+    </div>
+
+    <div class="total">
+      <p>Total: R$ {{ getSum() }}</p>
+    </div>
+
+    <button mat-raised-button (click)="order()">FINZALIZAR PEDIDO</button>
+
+  </div>
+
+  <div *ngIf="cart.length == 0">
+    <h1>Carrinho vazio</h1>
+  </div>
+</div>

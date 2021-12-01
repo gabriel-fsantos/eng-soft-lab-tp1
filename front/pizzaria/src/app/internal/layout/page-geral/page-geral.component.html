@@ -1,15 +1,18 @@
 <mat-toolbar color="primary" class="toolbar">
   <img src="../../../../../assets/logo.png" height="50">
 
-  <span>Pizarria</span>
+  <mat-icon (click)="redirecToHome()">home</mat-icon><span>Rei da Pizza</span>
 
   <span class="example-spacer"></span>
-  <button (click)="redirecToCart()" mat-icon-button aria-label="Example icon-button with heart icon">
+  <button (click)="redirecToCart()" mat-icon-button>
    <mat-icon>shopping_cart</mat-icon>
   </button>
-  <button (click)="redirecToUser()" mat-icon-button aria-label="Example icon-button with share icon">
+  <button (click)="redirecToUser()" mat-icon-button>
     <mat-icon>account_circle</mat-icon>
   </button>
+  <div *ngIf="cart.length > 0" class="circle">
+    {{ cart.length }}
+  </div>
 </mat-toolbar>
 
 <div class="all">

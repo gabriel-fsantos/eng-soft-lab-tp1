@@ -1,0 +1,27 @@
+.all {
+  padding: 16px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: stretch;
+  justify-content: space-around;
+  align-items: center;
+  background-color: bisque;
+}
+
+.card {
+  color: #fff;
+  border-radius: 8px;
+  background:  #bd2828;
+  margin-top: 36px;
+  width: 300px;
+}
+
+button {
+  background-color: bisque;
+}
+
+.header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}

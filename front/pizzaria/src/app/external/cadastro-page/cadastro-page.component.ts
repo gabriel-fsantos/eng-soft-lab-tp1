@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../login-page/login.service';
+import { CadastroService } from './cadastro.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cadastro-page',
@@ -10,11 +11,42 @@ import { LoginService } from '../login-page/login.service';
 })
 export class CadastroPageComponent implements OnInit {
 
-  loginForm: FormGroup;
+  first: FormGroup;
+  second: FormGroup;
+  third: FormGroup;
 
-  constructor(private readonly loginService: LoginService, private readonly formBuilder: FormBuilder,
-    private readonly router: Router) {
-      this.loginForm = this.formBuilder.group({
+  select: any = []
+
+  constructor(private readonly cadastroService: CadastroService,
+              private readonly formBuilder: FormBuilder,
+              private readonly router: Router,
+              private toastr: ToastrService) {
+
+      this.first = this.formBuilder.group({
+        name: [null, [
+          Validators.required
+        ]],
+        cpf: [null, [
+          Validators.required
+        ]],
+        phoneNumber: [null, [
+          Validators.required
+        ]]
+      });
+
+      this.second = this.formBuilder.group({
+        street: [null, [
+          Validators.required
+        ]],
+        district: [null, [
+          Validators.required
+        ]],
+        cep: [null, [
+          Validators.required
+        ]],
+      });
+
+      this.third = this.formBuilder.group({
         email: [null, [
           Validators.required,
           Validators.email
@@ -23,39 +55,47 @@ export class CadastroPageComponent implements OnInit {
           Validators.required,
           Validators.minLength(6)
         ]]
-      });
+      })
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.cadastroService.getDistricts().subscribe((res: any) => {
+      console.log(res)
+      this.select = res.rows;
+    });
+  }
 
-  handleLogin() {
-    // const dialog = this.dialog.open(ModalLoadingSecComponent, {
-    //   disableClose: true,
-    // });
-    // this.loginService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value)
-    //   .subscribe((user) => {
+  handleCadastro() {
 
-    //     // this.toastr.show('Autenticado com sucesso', 'Sucesso', { timeOut: 5000, messageClass: 'success' });
-    //   }, (error: { status: number; }) => {
-    //     let messageErr;
-    //     if (error.status === 401) {
-    //       messageErr = 'Usuário e/ou senha incorretos.';
-    //     } else {
-    //       messageErr = 'Algo de errado aconteceu, tente novamente mais tarde.';
-    //     }
-        // dialog.close();
-        // this.toastr.show(messageErr, 'Erro', { timeOut: 5000, messageClass: 'error' });
-      // });
+    let body = {
+      email: this.third.get('email')?.value,
+      password: this.third.get('password')?.value,
+      name: this.first.get('name')?.value,
+      phoneNumber: this.first.get('phoneNumber')?.value,
+      cpf: this.first.get('cpf')?.value,
+      district: this.second.get('district')?.value,
+      street: this.second.get('street')?.value,
+      cep: this.second.get('cep')?.value,
+      role: "admin"
+    }
+
+    this.cadastroService.newUser(body).subscribe((res) => {
+      this.toastr.success('Usuário criado com Sucesso');
+      this.router.navigate(['external/login']);
+    }, (error) => {
+      this.toastr.error('Algo de errado aconteceu tente novamente mais tarde.');
+    })
+
   }
 
   getEmailErrorMessage(): string {
-    return this.loginForm.get('email')?.hasError('required') ? 'Obrigatorio' :
-           this.loginForm.get('email')?.hasError('email') ? 'Email invalido' : '';
+    return this.third.get('email')?.hasError('required') ? 'Obrigatorio' :
+           this.third.get('email')?.hasError('email') ? 'Email invalido' : '';
   }
 
   getPasswordErrorMessage(): string {
-    return this.loginForm.get('password')?.hasError('required') ? 'Obrigatorio' :
-           !this.loginForm.get('password')?.hasError('minLength') ? 'Minimo 6 caracteres' : '';
+    return this.third.get('password')?.hasError('required') ? 'Obrigatorio' :
+           !this.third.get('password')?.hasError('minLength') ? 'Minimo 6 caracteres' : '';
   }
 
 }

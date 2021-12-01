@@ -1,62 +1,160 @@
 <div class="all">
   <div class="login-box">
     <div class="title">
-      <img src="../../../assets/logo.png" width="200">
-      <h1>Pizzaria dos Mendes</h1>
+      <img src="../../../assets/logo.png" width="200" />
+      <h1>Rei da Pizza</h1>
     </div>
-    <form
-      novalidate
-      name="loginForm"
-      [formGroup]="loginForm"
-      (ngSubmit)="handleLogin()"
-    >
-      <div class="inputs">
-        <mat-form-field
-          color="primary"
-          [floatLabel]="'always'"
-          appearance="outline"
-        >
-          <mat-label>Email</mat-label>
-          <input
-            matInput
-            type="text"
-            formControlName="email"
-            placeholder="digite seu email aqui"
-          />
-          <mat-error>{{ getEmailErrorMessage() }}</mat-error>
-        </mat-form-field>
 
-        <mat-form-field
-          color="primary"
-          [floatLabel]="'always'"
-          appearance="outline"
-        >
-          <mat-label>Senha</mat-label>
-          <input
-            matInput
-            type="password"
-            formControlName="password"
-            placeholder="digite sua senha"
-          />
-          <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
-        </mat-form-field>
-      </div>
+    <div class="inputs">
+      <mat-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="first">
+          <form [formGroup]="first">
+            <ng-template matStepLabel>Dados Essencias</ng-template>
+            <mat-form-field
+              color="primary"
+              [floatLabel]="'always'"
+              appearance="outline"
+            >
+              <mat-label>Nome Completo</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="name"
+                placeholder="digite seu nome aqui"
+              />
+              <mat-error>Obrigatório</mat-error>
+            </mat-form-field>
 
-      <div class="submit">
-        <button
-        color="primary"
-          mat-raised-button
-          type="submit"
-          [disabled]="loginForm.invalid"
-        >
-          Login
-        </button>
-      </div>
-    </form>
+            <mat-form-field
+              color="primary"
+              [floatLabel]="'always'"
+              appearance="outline"
+            >
+              <mat-label>CPF</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="cpf"
+                placeholder="digite seu cpf aqui"
+              />
+              <mat-error>Obrigatório</mat-error>
+            </mat-form-field>
+
+            <mat-form-field
+              color="primary"
+              [floatLabel]="'always'"
+              appearance="outline"
+            >
+              <mat-label>Telefone</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="phoneNumber"
+                placeholder="digite seu telefone aqui"
+              />
+              <mat-error>Obrigatório</mat-error>
+            </mat-form-field>
+
+            <div>
+              <button mat-button matStepperNext>Próximo</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="second">
+          <form [formGroup]="second">
+            <ng-template matStepLabel>Endereço</ng-template>
+            <mat-form-field
+              color="primary"
+              [floatLabel]="'always'"
+              appearance="outline"
+            >
+              <mat-label>Rua</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="street"
+                placeholder="digite sua rua aqui"
+              />
+              <mat-error>Obrigatório</mat-error>
+            </mat-form-field>
+
+            <mat-form-field
+              color="primary"
+              [floatLabel]="'always'"
+              appearance="outline"
+            >
+              <mat-label>Bairro</mat-label>
+              <mat-select formControlName="district">
+                <mat-option *ngFor="let item of select" [value]="item?.district">{{ item?.district }}</mat-option>
+              </mat-select>
+              <mat-error>Obrigatório</mat-error>
+            </mat-form-field>
+
+            <mat-form-field
+              color="primary"
+              [floatLabel]="'always'"
+              appearance="outline"
+            >
+              <mat-label>CEP</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="cep"
+                placeholder="digite seu cep aqui"
+              />
+              <mat-error>Obrigatório</mat-error>
+            </mat-form-field>
+
+            <div>
+              <button mat-button matStepperNext>Próximo</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="third">
+          <form [formGroup]="third">
+            <ng-template matStepLabel>Email</ng-template>
+            <mat-form-field
+              color="primary"
+              [floatLabel]="'always'"
+              appearance="outline"
+            >
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="email"
+                placeholder="digite seu email aqui"
+              />
+              <mat-error>{{ getEmailErrorMessage() }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field
+            color="primary"
+            [floatLabel]="'always'"
+            appearance="outline"
+          >
+            <mat-label>Senha</mat-label>
+            <input
+              matInput
+              type="password"
+              formControlName="password"
+              placeholder="digite seu nome aqui"
+            />
+            <mat-error>{{ getPasswordErrorMessage() }}</mat-error>
+          </mat-form-field>
+
+          <div>
+            <button mat-button (click)="handleCadastro()">Finalizar</button>
+          </div>
+
+        </form>
+        </mat-step>
+      </mat-stepper>
+
+    </div>
 
     <div class="bottom">
-      <a href="/external/cadastro">Não tem login? cadastre-se!</a>
+      <a href="/external/login">Já tem conta? faça o login!</a>
     </div>
-
   </div>
 </div>
